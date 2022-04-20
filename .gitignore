@@ -6,7 +6,10 @@ __pycache__/
 *.log
 *.aux
 *.gz
-
+*.bbl
+*.bcf
+*.blg
+*.run.xml
 # C extensions
 *.so
 
