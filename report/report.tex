@@ -3,9 +3,13 @@
 \addbibresource{bibliography.bib}
 %opening
 \title{Report Computational Psychology}
-\author{Jason Cramer, Maximilian Dierschke, Nils Engleder}
 
 \begin{document}
+\def\isblind{1}
+\if\isblind0
+    \author{Jason Cramer, Maximilian Dierschke, Nils Engleder}\fi
+\if \isblind1
+    \author{}\fi
 
 \maketitle
 Lorem Ipsum 
