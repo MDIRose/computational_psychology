@@ -11,7 +11,15 @@
     \author{}\fi
 \maketitle
 \section{Background}
+The problem are project is focusing on is Shepard's ideal generalization problem. The generalization problem focuses on how humans build hypothesis spaces for a given consequence after observing stimuli.
+In the paper "Generalization, similarity, and bayesian inference", they discuss how using a model of bayesian inference, we can predict the probabilty of given stimuli being included within the consequential region \cite{Tenenbaum}.
+The model uses the equation $p(y \in C \mid x) = \sum\limits_{h:y\in h} p(h | x)$ where $h$ is a hypothesis from the hypothesis space ${\cal H}$ and $p(h | x)$ is the posterior probabilty of  the hypothesis after observing x.
+We plan to extend this model to investigate how including negative examples within the x vector(x is the observed stimuli) affect how the model limits hypotheses. We also plan to explore how different distrubitions and models compare to the original model for generalization.
 \section{Question}
+\begin{itemize}
+\item How do negative examples affect the model?
+\item How do other probabilistic models compare to the original model?
+\end{itemize}
 \section{Method}
 
 \nocite{*}
