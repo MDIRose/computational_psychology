@@ -1,5 +1,6 @@
 \documentclass[]{scrartcl}
 \usepackage[style=alphabetic]{biblatex}
+\usepackage[shortlabels]{enumitem}
 \addbibresource{bibliography.bib}
 %opening
 \title{Proposal Computational Psychology}
@@ -18,10 +19,16 @@ We plan to extend this model to investigate how including negative examples with
 \section{Question}
 How can the model be improved to handle negative examples and discontinuous hypotheses?
 \section{Method}
-\begin{itemize}
-	\item Try how negative examples affect the original model
-	\item Compare approaches, how the model could be altered, such that it incorporates negative and non continuous data
-\end{itemize} 
+\begin{enumerate}[(1)]
+	\item Evaluate how negative examples affect the predictions of the original model and use it as a baseline
+	\item Evaluate the predictions made by the original model for multi cluster sample data 
+	\item Evaluate how the model could be altered so that negative examples can be incorporated to limit cluster intervals assuming a continuous consequential region
+	\item Evaluate how the model could be altered so that negative examples can be incorporated to limit cluster intervals assuming a discontinuous consequential region
+	\item Evaluate how the model can be expanded to handle discontinuous regions without negative examples
+\end{enumerate} 
+We want to initially solve the first three issues. Due to the added complexity we then have to decide based on the results how we limit the scope of the rest of the project for (4) and especially (5).
+
+
 \nocite{*}
 \printbibliography
 \end{document}
