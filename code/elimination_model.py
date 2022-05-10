@@ -6,11 +6,11 @@ from typing import List
 
 def generalize(consequential_region: int, positive_samples: List[int], negative_samples: List[int]) -> List[float]:
     """
-    Base Model implementation for reference purposes.
+    This variant of the model removes hypotheses from the hypothesis space which are known as negative examples.
     This code is based on homework 2 (which itself is based on code written originally by Danielle Navarro).
     :param consequential_region: size of consequential region
     :param positive_samples: list of positive examples in consequential region
-    :param negative_samples: list of negative examples in consequential region (unused)
+    :param negative_samples: list of negative examples in consequential region
     :return: list of posterior probabilities for each discrete value in consequential region
     """
     nH = math.comb(consequential_region+1, 2)
@@ -35,10 +35,11 @@ def generalize(consequential_region: int, positive_samples: List[int], negative_
         rH = hypotheses[h, :]
         lbH = rH[0]
         ubH = rH[1]
+        excluded = any(map(lambda n: lbH <= n <= ubH, negative_samples))
         for i in range(0, consequential_region):
             # We assume strong sampling
             v = i+1
-            if lbH <= v <= ubH:
+            if (lbH <= v <= ubH) and not excluded:
                 likelihood[h, i] = math.log(float(1) / ((ubH-lbH)+1))
             else:
                 likelihood[h, i] = 0
