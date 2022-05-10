@@ -1,5 +1,3 @@
-# This code is based on homework 2 (which itself is based on code written originally by Danielle Navarro)
-
 import baseline_model as baseline
 
 from typing import List
