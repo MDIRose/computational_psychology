@@ -15,12 +15,12 @@ def generalize(consequential_region: int, positive_samples: List[int], negative_
     :return: list of posterior probabilities for each discrete value in consequential region
     """
     # input validation
-    if len(positive_samples < 1):
+    if len(positive_samples) < 1:
         raise 'List of positive samples must be nonempty'
     positive_samples = sorted(positive_samples)
 
     # split positive samples into sections using negative samples as separators
-    low = positive_samples[1]
+    low = positive_samples[0]
     section = [low]
     positive_sections = [section]
     for i in range(1, len(positive_samples)):

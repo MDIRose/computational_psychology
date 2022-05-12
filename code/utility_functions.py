@@ -8,7 +8,6 @@ from typing import List
 def split_example_regions(positive_examples: List[int],negative_examples: List[int]) -> List[List[int]]:
     """
     This function generates disjoint cluster hypothesis based on observed samples
-    :param consequential_region:
     :param positive_examples:
     :param negative_examples:
     :return:
@@ -16,23 +15,29 @@ def split_example_regions(positive_examples: List[int],negative_examples: List[i
     positive_examples = sorted(positive_examples)
     negative_examples = sorted(negative_examples)
     regions = []
-
-    if len(negative_examples) == 0:
-        return [[positive_examples[0], positive_examples[-1]]]
-
-    for example in negative_examples:
-        values = list(filter(lambda x: x < example, positive_examples))
-        lower = values[0]
-        if len(regions) == 0:
-            lower = 0
-        regions.append([lower, example-1])
-
-    final_values = list(filter(lambda x:  x > negative_examples[-1], positive_examples))
-    if len(final_values)  != 0:
-        lower = min(regions[-1][-1]+1, final_values[0])
-        regions.append([lower, 100])
-    else:
-        regions[-1][-1] = 100
+    region = []
+    i = 0
+    for example in positive_examples:
+        if len(negative_examples) <= i or example <  negative_examples[i]:
+            region.append(example)
+        else:
+            regions.append(region)
+            region = [example]
+            i += 1
+    regions.append(region)
+    return regions
+# [1, 50, 100] 3 -> [[1], [50], [100]]
+def split_number_regions(consequential_region: int, positive_examples: List[int], n_regions: int) -> List[List[int]]:
+    if len(positive_examples) < n_regions:
+        raise 'Too many regions for number of examples'
+    split_distance = consequential_region / n_regions
+    regions = [[] for _ in range(n_regions)]
+    i = 1
+    for example in positive_examples:
+        if example >= split_distance*i:
+            i +=1
+        regions[i-1].append(example)
     return regions
 
-print(split_example_regions([1,  100], [50]))
+split_number_regions(120, [1, 50, 100], 2)
+
