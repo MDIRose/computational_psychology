@@ -5,6 +5,7 @@ import elimination_model as elimination
 
 from typing import List
 
+
 def generalize(consequential_region: int, positive_samples: List[int], negative_samples: List[int]) -> List[float]:
     """
     This variant of the model handles discontinuous hypotheses by using negative samples to split the hypothesis space.
@@ -34,10 +35,11 @@ def generalize(consequential_region: int, positive_samples: List[int], negative_
     # calculate per-section probabilities
     num_sections = len(positive_sections)
     section_probabilities = np.zeros((num_sections, consequential_region))
-    # TODO: per section calc
+    for i, section in enumerate(positive_sections):
+        section_probabilities[i] = elimination.generalize(consequential_region, section, negative_samples)
 
     # sum section probabilities for output
-    return section_probabilities.sum(axis=1).tolist()   # TODO: finish summation
+    return section_probabilities.sum(axis=0).tolist()
 
 def any_in_range(items: List[int], low: int, high: int) -> bool:
     return any(map(lambda n: low <= n <= high, items))
