@@ -43,3 +43,8 @@ def generalize(consequential_region: int, positive_samples: List[int], negative_
 
 def any_in_range(items: List[int], low: int, high: int) -> bool:
     return any(map(lambda n: low <= n <= high, items))
+
+consequential_region = 120
+positive_examples = [0,100]
+negative_examples = [50]
+generalize(consequential_region,positive_examples,negative_examples )

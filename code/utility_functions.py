@@ -27,10 +27,10 @@ def split_example_regions(positive_examples: List[int],negative_examples: List[i
     regions.append(region)
     return regions
 # [1, 50, 100] 3 -> [[1], [50], [100]]
-def split_number_regions(consequential_region: int, positive_examples: List[int], n_regions: int) -> List[List[int]]:
+def split_number_regions(positive_examples: List[int], n_regions: int) -> List[List[int]]:
     if len(positive_examples) < n_regions:
         raise 'Too many regions for number of examples'
-    split_distance = consequential_region / n_regions
+    split_distance = np.sum(positive_examples) / n_regions
     regions = [[] for _ in range(n_regions)]
     i = 1
     for example in positive_examples:
@@ -38,6 +38,4 @@ def split_number_regions(consequential_region: int, positive_examples: List[int]
             i +=1
         regions[i-1].append(example)
     return regions
-
-split_number_regions(120, [1, 50, 100], 2)
 

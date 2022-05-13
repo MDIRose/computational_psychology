@@ -14,7 +14,6 @@ def generalize(consequential_region: int, positive_samples: List[int], negative_
     :return: list of posterior probabilities for each discrete value in consequential region
     """
     nH = math.comb(consequential_region+1, 2)
-
     # Create the hypothesis space: Every hypothesis is continuous and defined by an upper and lower bound
     hypotheses = np.zeros((nH, 2))
     lower_bound = 1
