@@ -35,21 +35,41 @@ The baseline model (Figure \ref{fig:baseline}), which was introduced by Tenenbau
 \begin{figure}[t]
 	\includegraphics[width=4cm]{graphics/baseline.png}
 	\centering
-	\caption{Baseline model fitted on the positive examples [40, 50, 60] (red) does not incorporate the negative examples (70,80) }
+	\caption{Baseline model fitted on the positive examples [40, 50, 60] (red) does not incorporate the negative example [70] }
 	\label{fig:baseline}
 \end{figure}
 
-A naive approach to incorporate negative examples, is to fit a model the same way it was fitted for the positive examples and then  calculate the difference.
+A naive approach to incorporate negative examples, is to fit a model the same way it was fitted for the positive examples and then calculate the difference.
+This then obviously needs to be 
 
+\begin{figure}
+	\centering
+	\includegraphics{graphics/addition_model}
+	\caption{addition model fitted on the positive examples [40, 50, 60] (red) and negative exaample [70]}
+\end{figure}
 \noindent
-
+In the graph we can see,
 Evaluate how negative examples affect the predictions of the original model and use it as a baseline
 (2) Evaluate the predictions made by the original model for multi cluster sample data
-\section{multi cluster sample data}
-(3) Evaluate how the model could be altered so that negative examples can be incorporated to limit cluster intervals assuming a continuous consequential region
-\section{multi}
-(4) Evaluate how the model could be altered so that negative examples can be incorporated to limit cluster intervals assuming a discontinuous consequential region
-1
+	
+	
+\section{Limiting positive regions using negative examples}
+%(3) Evaluate how the model could be altered so that negative examples can be incorporated to limit cluster intervals assuming a continuous consequential region
+A typical use case for negative samples under the assumption of a single positive region is limiting that region.
+We would generally refer to the underlying thought process as one of elimination, which is why we shall call the corresponding model the elimination model.
+Since our baseline model takes all possible hypotheses into consideration, the process of integrating counterexamples is relatively straightforward: We remove all those hypotheses from consideration which are contradicted by our negative examples.
+To this end, we modify the likelihood calculation to
+
+\section{Separating positive regions by negative examples}
+%(4) Evaluate how the model could be altered so that negative examples can be incorporated to limit cluster intervals assuming a discontinuous consequential region
+
+
+\section{Multiple Discontinuous Regions Model}
+\begin{figure}
+	\centering
+	\includegraphics{graphics/mprm_model}
+	\caption{Multiple discontinuous regions model fitted on examples [1, 100] with 2 disjoint regions.}
+\end{figure}
 (5) Evaluate how the model can be expanded to handle discontinuous regions without
 negative examples
 We want to initially solve the first three issues. Due to the added co
