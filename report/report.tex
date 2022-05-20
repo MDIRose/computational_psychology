@@ -126,10 +126,16 @@ a modification of the original model, which allows for multiple discontinuous re
 In the case that there are multiple clusters of data points, we expect, that humans would  give higher likelihoods for the clustered regions than their surrounding areas. 
 This behavior is shown well by the function, which can be seen in \cref{fig:mprm}. The resulting function shows the expected characteristics, but is not as smooth as it would be expected.
 It works by splitting the stimuli into n-regions and then calculating the posterior probability for each region.
-This model is fitted to only positive examples, and works by taking $max(p_i(observation))$, 
+This model is fitted to only positive examples, and works by taking $\max{p_i(observation)}$, 
 
 
 In the classroom example ( with a negligible statistical significance) the test subject did not predict, what we were hoping for. Instead, the probability was picked close to one for the whole arrange between the positive examples.  
+This is due to the binning process which works in the following way:
+\begin{enumerate}
+	\item Calculate the splitting distance $\textbf{s} = \frac{\sum\limits_{x_i \in X} x_i}{number of regions}$
+ 	\item For each samples $x_i$ calculate the bin number $i$ as $\textbf{i} = \left\lfloor \frac{x_i}{s} \right\rfloor$
+\end{enumerate}
+This process works well for spacious data, however, fails for higly clustered data. 
 \section{Conclusion}
 
 We were able to design models that were able to predict:
